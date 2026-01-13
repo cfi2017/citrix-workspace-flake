@@ -19,7 +19,10 @@
     overlays.default = final: prev: let
       old = import nixpkgs-25-05 {
         system = prev.stdenv.hostPlatform.system or prev.system;
-        config = {allowUnfree = true;};
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = ["libsoup-2.74.3"];
+        };
       };
     in {
       citrix_workspace = prev.citrix_workspace.overrideAttrs (oa: {
